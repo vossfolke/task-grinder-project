@@ -24,7 +24,7 @@
     </header>
     <section id="user-goal">
       <h2>My Quests</h2>
-      <button type="button">Add Task</button>
+      <button type="button" th:onclick="'window.location.href = \'' + @{/createTask} + '\''">Add Task</button>
       <p></p>
     </section>
   </body>

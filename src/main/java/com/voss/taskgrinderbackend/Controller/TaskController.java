@@ -11,4 +11,9 @@ public class TaskController {
     public String getTasks(){
         return "tasks";
     }
+
+    @GetMapping("/createTask")
+    public String getCreateTask(){
+        return "createTask";
+    }
 }
