@@ -34,6 +34,8 @@ header {
   margin: 3rem auto;
   border-radius: 10px;
   padding: 1rem;
+  background-image: url("/pictures/dishes.jpg");
+  background-size: cover;
   background-color: #4fc08d;
   color: white;
   text-align: center;
