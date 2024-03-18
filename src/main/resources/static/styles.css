@@ -46,6 +46,7 @@ header {
 #user-goal {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem auto;
+  background-image: url("/pictures/laundry.jpg");
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
