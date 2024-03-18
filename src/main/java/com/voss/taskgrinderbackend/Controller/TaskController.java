@@ -1,4 +1,4 @@
-package com.voss.taskgrinderbackend;
+package com.voss.taskgrinderbackend.Controller;
 
 
 import org.springframework.stereotype.Controller;
