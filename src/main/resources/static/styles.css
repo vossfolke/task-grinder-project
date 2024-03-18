@@ -8,11 +8,12 @@ html {
 
 body {
   margin: 0;
+  background-color: #5e3d4c9f;
 }
 
 .navbar ul {
   list-style-type: none;
-  background-color: #4fc08d;
+  background-color: #5e3d4c9f;
 
 }
 
@@ -25,7 +26,7 @@ body {
 }
 
 .navbar a:hover{
-  background-color: #c04f849f;
+  background-color: #e234859f;
 }
 
 
