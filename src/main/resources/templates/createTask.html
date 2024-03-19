@@ -18,8 +18,8 @@
 </nav>
   <header> Create Task </header>
   <section id="user-goal">
-  <form method="post" th:object="${task}">
-    <input type="text" placeholder="Task" th:field="*{task}">
+  <form method="post" th:object="${task}" th:action="@{/handleSubmit}">
+    <input type="text" placeholder="Task" th:field="*{name}">
     <input type="text" placeholder="Difficulty" th:field="*{value}">
     <input type="date" style="color:black" placeholder="Date" th:field="*{date}">
     <input type="hidden" th:field="*{id}">
