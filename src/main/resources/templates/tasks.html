@@ -25,7 +25,17 @@
     <section id="user-goal">
       <h2>My Quests</h2>
       <button type="button" th:onclick="'window.location.href = \'' + @{/createTask} + '\''">Add Task</button>
-      <p></p>
+      <p>
+        <table id="table" style="max-width: 800px;"> 
+          <tr th:each="task : ${tasks}">
+            <td th:text="${task.name}"></td>
+            <td th:text="${task.value}"></td>
+            <td th:text="${#dates.format(task.date, 'yyyy-MM-dd')}"></td>
+            <td> <a role="button" class="Update" th:href="@{/(id = ${task.id})}">U</a></td>
+            <td> <a role="button" class="Delete" th:href="@{/completed(id = ${task.id})}">Done</a></td>
+          </tr>
+        </table>
+      </p>
     </section>
   </body>
 </html>
