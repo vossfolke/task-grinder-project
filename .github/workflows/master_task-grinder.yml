@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
   build:
@@ -27,8 +26,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.war'
+          name: task-grinder-app
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: windows-latest
@@ -41,7 +40,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: task-grinder-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -50,4 +49,4 @@ jobs:
           app-name: 'task-grinder'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_94A451B4214B4AE7825E3BD28C9C4B2A }}
-          package: '*.war'
+          package: '*.jar'
