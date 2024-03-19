@@ -1,0 +1,89 @@
+name: Build, Test, and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ARTIFACT_NAME: task-grinder-v${GITHUB_RUN_NUMBER}.jar
+  APP_NAME: task-grinder
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'corretto'
+          java-version: '11'
+
+      - name: Build project
+        run: |
+          chmod +x ./mvnw
+          ./mvnw package
+          mv ./target/task-grinder-backend-0.0.1-SNAPSHOT.jar ./target/${{ env.ARTIFACT_NAME }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ./target/*.jar
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'corretto'
+          java-version: '11'
+
+      - name: Smoke test
+        run: |
+          java -jar ./target/${{ env.ARTIFACT_NAME }} &
+          sleep 21
+          curl -i localhost:5000/profile
+          curl -i localhost:5000/tasks
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'eu-central-1'
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ./target/
+
+      - name: Deploy to S3
+        run: aws s3 cp ./target/${{ env.ARTIFACT_NAME }} s3://${{ secrets.S3_BUCKET }}/${{ env.ARTIFACT_NAME }}
+
+      - name: Create application version
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name ${{ env.APP_NAME }} \
+            --version-label ${{ github.run_number }} \
+            --source-bundle S3Bucket=${{ secrets.S3_BUCKET }},S3Key=${{ env.ARTIFACT_NAME }}
+
+      - name: Update environment
+        run: |
+          aws elasticbeanstalk update-environment \
+            --application-name ${{ env.APP_NAME }} \
+            --environment-name Task-grinder-env \
+            --version-label=${{ github.run_number }}
