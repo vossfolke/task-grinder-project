@@ -19,8 +19,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'corretto'
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '21'
 
       - name: Build project
         run: |
@@ -44,8 +44,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'corretto'
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '21'
 
       - name: Smoke test
         run: |
