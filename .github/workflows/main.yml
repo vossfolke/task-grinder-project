@@ -3,7 +3,7 @@ name: Build, Test, and Deploy
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   ARTIFACT_NAME: task-grinder-v${GITHUB_RUN_NUMBER}.jar
