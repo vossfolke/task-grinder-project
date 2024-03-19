@@ -1,0 +1,42 @@
+variables:
+  ARTIFACT_NAME: task-grinder-v$CI_PIPELINE_IID.jar 
+  APP_NAME: task-grinder
+
+stages:
+  - build
+  - test
+  - deploy
+
+build project:
+  stage: build
+  image: amazoncorretto:21.0.2-alpine
+  script:
+    - chmod +x ./mvnw
+    - ./mvnw package
+    - mv ./target/task-grinder-backend-0.0.1-SNAPSHOT.jar ./target/$ARTIFACT_NAME
+  artifacts:
+    paths:
+      - ./target/*.jar
+
+smoke test:
+  stage: test
+  image: amazoncorretto:21.0.2-alpine
+  before_script:
+    - apk --no-cache add curl
+  script:
+    - java -jar ./target/$ARTIFACT_NAME &
+    - sleep 21
+    - curl -i localhost:5000/profile
+    - curl -i localhost:5000/tasks
+
+deploy:
+  stage: deploy
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - aws configure set region eu-central-1
+    - aws s3 cp ./target/$ARTIFACT_NAME s3://$S3_Bucket/$ARTIFACT_NAME  
+    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --version-label $CI_PIPELINE_IID --source-bundle S3Bucket=$S3_Bucket,S3Key=$ARTIFACT_NAME
+    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name Task-grinder-env --version-label=$CI_PIPELINE_IID
+        
