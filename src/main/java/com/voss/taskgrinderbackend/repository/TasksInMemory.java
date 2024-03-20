@@ -3,7 +3,7 @@ package com.voss.taskgrinderbackend.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.voss.taskgrinderbackend.Service.Task;
+import com.voss.taskgrinderbackend.Task;
 
 public class TasksInMemory{
 
