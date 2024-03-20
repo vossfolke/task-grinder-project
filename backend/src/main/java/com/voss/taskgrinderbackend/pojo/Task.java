@@ -1,4 +1,4 @@
-package com.voss.taskgrinderbackend;
+package com.voss.taskgrinderbackend.pojo;
 
 import java.util.UUID;
 import java.util.Date;

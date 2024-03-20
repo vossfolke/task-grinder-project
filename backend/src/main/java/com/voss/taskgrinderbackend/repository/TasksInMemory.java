@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.voss.taskgrinderbackend.Task;
+import com.voss.taskgrinderbackend.pojo.Task;
 
 @Repository
 public class TasksInMemory{
