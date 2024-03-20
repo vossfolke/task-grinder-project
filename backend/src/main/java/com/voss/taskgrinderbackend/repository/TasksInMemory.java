@@ -11,9 +11,7 @@ import com.voss.taskgrinderbackend.pojo.Task;
 @Repository
 public class TasksInMemory{
 
-    private List<Task> tasks = Arrays.asList(
-        new Task("name", "low", "1")
-    );
+    private List<Task> tasks = new ArrayList<>();
 
     public Task getTask(int index){
                 return tasks.get(index);

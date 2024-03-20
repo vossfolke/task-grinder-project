@@ -31,5 +31,10 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasks(){
         return tasksInMemory.getTasks();
     }
+
+    @Override
+    public void saveTask(Task task){
+        tasksInMemory.addTask(task);
+    }
     
 }
