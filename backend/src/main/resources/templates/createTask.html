@@ -19,8 +19,11 @@
   <header> Create Task </header>
   <section id="user-goal">
   <form method="post" th:object="${task}" th:action="@{/handleSubmit}">
+    <p th:errors="*{name}"></p>
     <input type="text" placeholder="Task" th:field="*{name}">
+    <p th:errors="*{value}"></p>
     <input type="text" placeholder="Difficulty" th:field="*{value}">
+    <p th:errors="*{date}"></p>
     <input type="date" style="color:black" placeholder="Date" th:field="*{date}">
     <input type="hidden" th:field="*{id}">
     <br><br>

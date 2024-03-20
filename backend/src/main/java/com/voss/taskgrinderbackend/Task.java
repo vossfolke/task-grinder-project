@@ -5,10 +5,18 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Task {
+    @NotBlank(message = "name your task")
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent(message = "choose a present or future date")
+    @NotNull(message = "choose a present or future date")
     private Date date;
+    @NotBlank(message = "choose a difficulty")
     private String value;
     private String id;
 
