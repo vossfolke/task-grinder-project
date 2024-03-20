@@ -3,8 +3,11 @@ package com.voss.taskgrinderbackend.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.voss.taskgrinderbackend.Task;
 
+@Repository
 public class TasksInMemory{
 
     private List<Task> tasks = new ArrayList<>();

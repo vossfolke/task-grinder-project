@@ -2,14 +2,17 @@ package com.voss.taskgrinderbackend.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.voss.taskgrinderbackend.repository.TasksInMemory;
 import com.voss.taskgrinderbackend.Constants;
 import com.voss.taskgrinderbackend.Task;
 
-
+@Service
 public class TaskService {
 
-    TasksInMemory tasks = new TasksInMemory();
+    @Autowired TasksInMemory tasks;
 
     public List<Task> getTasks (){
         return tasks.getTasks();
