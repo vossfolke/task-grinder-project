@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.voss.taskgrinderbackend.Service.TaskService;
 import com.voss.taskgrinderbackend.pojo.Task;
 
 
@@ -21,7 +22,7 @@ public class TaskController {
     @Autowired private TaskService taskService;
 
     @GetMapping("/task/{id}")
-    public ResponseEntity<Task> getTask(String id){
+    public ResponseEntity<Task> getTask(@PathVariable String id){
         Task task = taskService.getTaskById(id);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }

@@ -21,7 +21,7 @@ public class TaskServiceImpl implements TaskService {
 
     private int findIndexById(String id){
         return IntStream.range(0, tasksInMemory.getTasks().size())
-        .filter(index -> TasksInMemory.getTasks().get(index).getId().equals(id))
+        .filter(index -> tasksInMemory.getTasks().get(index).getId().equals(id))
         .findFirst()
         .orElseThrow();
     }
