@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.voss.taskgrinderbackend.Service.TaskService;
 import com.voss.taskgrinderbackend.pojo.Task;
 
+import java.util.List;
+
 
 @RestController
 public class TaskController {
@@ -25,6 +27,12 @@ public class TaskController {
     public ResponseEntity<Task> getTask(@PathVariable String id){
         Task task = taskService.getTaskById(id);
         return new ResponseEntity<>(task, HttpStatus.OK);
+    }
+
+    @GetMapping("/task/all")
+    public ResponseEntity<List<Task>> getTasks(){
+        List<Task> tasks = taskService.getTasks();
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
 

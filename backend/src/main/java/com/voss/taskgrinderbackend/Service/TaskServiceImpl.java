@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.voss.taskgrinderbackend.repository.TasksInMemory;
@@ -24,6 +25,11 @@ public class TaskServiceImpl implements TaskService {
         .filter(index -> tasksInMemory.getTasks().get(index).getId().equals(id))
         .findFirst()
         .orElseThrow();
+    }
+
+    @Override
+    public List<Task> getTasks(){
+        return tasksInMemory.getTasks();
     }
     
 }
