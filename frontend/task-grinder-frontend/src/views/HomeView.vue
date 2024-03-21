@@ -1,9 +1,12 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
+    <nav class="nav">
+      <a href="/" class="nav__link">Profile</a>
+      <a href="/questlog" class="nav__link" >Quest Hub</a>
+    </nav>
   <main>
-    <TheWelcome />
+    
   </main>
 </template>
