@@ -2,7 +2,6 @@ package com.voss.taskgrinderbackend.Controller;
 
 import com.voss.taskgrinderbackend.Service.ProfileService;
 import com.voss.taskgrinderbackend.pojo.Profile;
-import com.voss.taskgrinderbackend.pojo.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
