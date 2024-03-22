@@ -16,6 +16,10 @@ import com.voss.taskgrinderbackend.Service.TaskService;
 import com.voss.taskgrinderbackend.pojo.Task;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -40,6 +44,19 @@ public class TaskController {
         taskService.saveTask(task);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping("/task/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody Task task){
+        taskService.updateTask(id, task);
+        return new ResponseEntity<>(taskService.getTaskById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/task/{id}")
+    public ResponseEntity<HttpStatus> deleteTask(@PathVariable String id){
+        taskService.deleteTask(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }

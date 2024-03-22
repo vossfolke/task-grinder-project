@@ -36,5 +36,15 @@ public class TaskServiceImpl implements TaskService {
     public void saveTask(Task task){
         tasksInMemory.addTask(task);
     }
+
+    @Override
+    public void updateTask(String id, Task task){
+        tasksInMemory.updateTask(findIndexById(id), task);
+    }
+
+    @Override
+    public void deleteTask(String id){
+        tasksInMemory.deleteTask(findIndexById(id));
+    }
     
 }
