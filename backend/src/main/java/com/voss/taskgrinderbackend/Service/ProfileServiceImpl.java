@@ -5,6 +5,7 @@ import com.voss.taskgrinderbackend.repository.ProfilesInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @Component
@@ -31,6 +32,12 @@ public class ProfileServiceImpl implements ProfileService{
     public void deleteProfile(String id) {
         profilesInMemory.deleteProfile(findIndexById(id));
     }
+
+    @Override
+    public List<Profile> getProfiles() {
+        return profilesInMemory.getProfiles();
+    }
+
 
     private int findIndexById(String id){
         return IntStream.range(0, profilesInMemory.getProfiles().size())
