@@ -10,6 +10,10 @@
       A reward may be a nice Diner or watching a movie in cinema. This should help you building a routine doing daily tasks that feels rewarding.
     </p>
     <form v-on:submit.prevent="submitTask">
+          <select v-model="questType" id="questTimeChoice">
+            <option disabled value="">Select Quest Type</option>
+            <option v-for="option in questOptions" :value="option">{{ option }}</option>
+          </select>
       <input type="text" placeholder="task">
       <input type="date" placeholder="today">
       <button>Commit</button>
@@ -19,6 +23,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      questType: 'Quest Type',
+      questOptions: ['once', 'weekly', 'monthly']
+    }
+  },
   methods: {
     submitTask() {
       alert("alright, let's do it!")
