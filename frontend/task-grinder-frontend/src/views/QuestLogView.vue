@@ -14,17 +14,17 @@
       <button @click="submitTask">Commit</button>
     </form>
   </div>
-  <div class="listTask">
+  <div class="task-list">
     <div v-for="(task, index) in tasks" :key="index" class="task-item" >
       <div class="task-icon" >
           {{ task.type }}
       </div>
-      <div class="task-info" >
+      <div class="task-info">
           <p> {{ task.name }} </p>
           <p> {{ task.date }} </p>
       </div>
-      <div>
-        <button @click="deleteTask"> Done </button>
+      <div class="task-complete" v-bind="index">
+        <button @click.stop="deleteTask(index)"> Done </button>
       </div>
     </div>
   </div>
@@ -63,3 +63,28 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .task-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(51, 36, 36, 0.74);
+  }
+  .task-info {
+    flex-grow: 1;
+    align-self: center;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .task-icon {
+    flex-grow: 1;
+    align-self: center;
+  }
+  .task-complete {
+    flex-grow: 1;
+  }
+
+</style>
