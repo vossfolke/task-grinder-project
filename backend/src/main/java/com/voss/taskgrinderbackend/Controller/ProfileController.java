@@ -16,32 +16,29 @@ public class ProfileController {
     private ProfileService profileService;
 
     @GetMapping("/profile/{id}")
-    public ResponseEntity<Profile> getProfile(@PathVariable String id) {
-        Profile profile = profileService.getProfileById(id);
-        return new ResponseEntity<>(profile, HttpStatus.OK);
+    public ResponseEntity<Profile> getProfile(@PathVariable Long id) {
+        return new ResponseEntity<>(profileService.getProfileById(id), HttpStatus.OK);
     }
 
     @GetMapping("/profile/all")
     public ResponseEntity<List<Profile>> getTasks(){
-        List<Profile> profiles = profileService.getProfiles();
-        return new ResponseEntity<>(profiles, HttpStatus.OK);
+        return new ResponseEntity<>(profileService.getProfiles(), HttpStatus.OK);
     }
 
     @PostMapping("/profile")
-    public ResponseEntity<HttpStatus> createProfile(@RequestBody Profile profile) {
+    public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
         profileService.saveProfile(profile);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(profileService.saveProfile(profile), HttpStatus.CREATED);
 
     }
 
     @PutMapping("/profile/{id}")
-    public ResponseEntity<Profile> updateProfile(@PathVariable String id, @RequestBody Profile profile){
-        profileService.updateProfile(profile, id);
-        return new ResponseEntity<>(profileService.getProfileById(id) ,HttpStatus.OK);
+    public ResponseEntity<Profile> updateProfile(@PathVariable Long id, @RequestBody Profile profile){
+        return new ResponseEntity<>(profileService.saveProfile(profile) ,HttpStatus.OK);
     }
 
     @DeleteMapping("/profile/{id}")
-    public ResponseEntity<HttpStatus> deleteProfile(@PathVariable String id){
+    public ResponseEntity<HttpStatus> deleteProfile(@PathVariable Long id){
         profileService.deleteProfile(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

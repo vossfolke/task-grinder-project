@@ -1,13 +1,20 @@
 package com.voss.taskgrinderbackend.pojo;
 
-import java.util.UUID;
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Profile {
+
     private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userId;
 
     public Profile() {
-        this.userId = UUID.randomUUID().toString();
     }
 
     public String getUsername() {

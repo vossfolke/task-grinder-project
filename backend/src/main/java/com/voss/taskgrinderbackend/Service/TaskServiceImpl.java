@@ -7,44 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.voss.taskgrinderbackend.repository.TaskRepository;
 import com.voss.taskgrinderbackend.repository.TasksInMemory;
 import com.voss.taskgrinderbackend.pojo.Task;
 
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    @Autowired private TasksInMemory tasksInMemory;
+    @Autowired private TaskRepository taskRepository;
 
     @Override
-    public Task getTaskById(Long id){
-        return tasksInMemory.getTask(findIndexById(id));
-    }
-
-    private int findIndexById(Long id){
-        return IntStream.range(0, tasksInMemory.getTasks().size())
-        .filter(index -> tasksInMemory.getTasks().get(index).getId().equals(id))
-        .findFirst()
-        .orElseThrow();
+    public Task getTask(Long id){
+        return taskRepository.findById(id).get();
     }
 
     @Override
     public List<Task> getTasks(){
-        return tasksInMemory.getTasks();
+        return (List<Task>) taskRepository.findAll();
     }
 
     @Override
-    public void saveTask(Task task){
-        tasksInMemory.addTask(task);
+    public Task saveTask(Task task){
+        return taskRepository.save(task);
     }
 
-    @Override
-    public void updateTask(Long id, Task task){
-        tasksInMemory.updateTask(findIndexById(id), task);
-    }
 
     @Override
     public void deleteTask(Long id){
-        tasksInMemory.deleteTask(findIndexById(id));
+        taskRepository.deleteById(id);
     }
     
 }

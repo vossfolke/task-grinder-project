@@ -16,10 +16,6 @@ import com.voss.taskgrinderbackend.Service.TaskService;
 import com.voss.taskgrinderbackend.pojo.Task;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @RestController
@@ -29,26 +25,17 @@ public class TaskController {
 
     @GetMapping("/task/{id}")
     public ResponseEntity<Task> getTask(@PathVariable Long id){
-        Task task = taskService.getTaskById(id);
-        return new ResponseEntity<>(task, HttpStatus.OK);
+        return new ResponseEntity<>(taskService.getTask(id), HttpStatus.OK);
     }
 
     @GetMapping("/task/all")
     public ResponseEntity<List<Task>> getTasks(){
-        List<Task> tasks = taskService.getTasks();
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+        return new ResponseEntity<>(taskService.getTasks(), HttpStatus.OK);
     }
 
     @PostMapping("/task")
-    public ResponseEntity<HttpStatus> createTask(@RequestBody Task task){
-        taskService.saveTask(task);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PutMapping("/task/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
-        taskService.updateTask(id, task);
-        return new ResponseEntity<>(taskService.getTaskById(id), HttpStatus.OK);
+    public ResponseEntity<Task> createTask(@RequestBody Task task){
+        return new ResponseEntity<>(taskService.saveTask(task), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/task/{id}")

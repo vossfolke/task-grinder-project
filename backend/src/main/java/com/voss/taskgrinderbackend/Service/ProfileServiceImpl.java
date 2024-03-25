@@ -1,6 +1,7 @@
 package com.voss.taskgrinderbackend.Service;
 
 import com.voss.taskgrinderbackend.pojo.Profile;
+import com.voss.taskgrinderbackend.repository.ProfileRepository;
 import com.voss.taskgrinderbackend.repository.ProfilesInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,37 +13,26 @@ import java.util.stream.IntStream;
 public class ProfileServiceImpl implements ProfileService{
 
     @Autowired
-    private ProfilesInMemory profilesInMemory;
+    private ProfileRepository profileRepository;
+
     @Override
-    public void saveProfile(Profile profile) {
-        profilesInMemory.addProfile(profile);
+    public Profile saveProfile(Profile profile) {
+        return profileRepository.save(profile);
     }
 
     @Override
-    public void updateProfile(Profile profile, String id) {
-        profilesInMemory.updateProfile(findIndexById(id), profile);
+    public Profile getProfileById(Long id) {
+        return profileRepository.findById(id).get();
     }
 
     @Override
-    public Profile getProfileById(String id) {
-        return profilesInMemory.getProfile(findIndexById(id));
-    }
-
-    @Override
-    public void deleteProfile(String id) {
-        profilesInMemory.deleteProfile(findIndexById(id));
+    public void deleteProfile(Long id) {
+        profileRepository.deleteById(id);;
     }
 
     @Override
     public List<Profile> getProfiles() {
-        return profilesInMemory.getProfiles();
+        return (List<Profile>) profileRepository.findAll();
     }
 
-
-    private int findIndexById(String id){
-        return IntStream.range(0, profilesInMemory.getProfiles().size())
-                .filter(index -> profilesInMemory.getProfiles().get(index).getUserId().equals(id))
-                .findFirst()
-                .orElseThrow();
-    }
 }

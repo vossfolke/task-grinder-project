@@ -7,9 +7,8 @@ import com.voss.taskgrinderbackend.pojo.Task;
 
 public interface TaskService {
 
-    Task getTaskById(Long id);
-    void saveTask(Task task);
-    void updateTask(Long id, Task task);
+    Task getTask(Long id);
+    Task saveTask(Task task);
     void deleteTask(Long id);
     List<Task> getTasks();
 }
