@@ -71,17 +71,19 @@ export default {
     border-radius: 20px;
     margin-bottom: 20px;
     background-color: rgba(51, 36, 36, 0.74);
+    color: aliceblue;
   }
   .task-info {
     flex-grow: 1;
-    align-self: center;
+    align-self: right;
+    align-content: right;
     margin-left: 20px;
     margin-right: 20px;
   }
 
   .task-icon {
     flex-grow: 1;
-    align-self: center;
+    align-self: auto;
   }
   .task-complete {
     flex-grow: 1;
