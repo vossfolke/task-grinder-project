@@ -16,11 +16,11 @@ public class TaskServiceImpl implements TaskService {
     @Autowired private TasksInMemory tasksInMemory;
 
     @Override
-    public Task getTaskById(String id){
+    public Task getTaskById(Long id){
         return tasksInMemory.getTask(findIndexById(id));
     }
 
-    private int findIndexById(String id){
+    private int findIndexById(Long id){
         return IntStream.range(0, tasksInMemory.getTasks().size())
         .filter(index -> tasksInMemory.getTasks().get(index).getId().equals(id))
         .findFirst()
@@ -38,12 +38,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void updateTask(String id, Task task){
+    public void updateTask(Long id, Task task){
         tasksInMemory.updateTask(findIndexById(id), task);
     }
 
     @Override
-    public void deleteTask(String id){
+    public void deleteTask(Long id){
         tasksInMemory.deleteTask(findIndexById(id));
     }
     

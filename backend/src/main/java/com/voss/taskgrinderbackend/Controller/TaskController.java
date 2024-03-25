@@ -28,7 +28,7 @@ public class TaskController {
     @Autowired private TaskService taskService;
 
     @GetMapping("/task/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable String id){
+    public ResponseEntity<Task> getTask(@PathVariable Long id){
         Task task = taskService.getTaskById(id);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
@@ -46,13 +46,13 @@ public class TaskController {
     }
 
     @PutMapping("/task/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody Task task){
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
         taskService.updateTask(id, task);
         return new ResponseEntity<>(taskService.getTaskById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/task/{id}")
-    public ResponseEntity<HttpStatus> deleteTask(@PathVariable String id){
+    public ResponseEntity<HttpStatus> deleteTask(@PathVariable Long id){
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
