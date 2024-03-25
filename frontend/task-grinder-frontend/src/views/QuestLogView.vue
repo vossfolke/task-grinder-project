@@ -1,22 +1,23 @@
 <template>
-    <nav class="nav">
-      <a href="/" class="nav__link">Profile</a>
-      <a href="/questlog" class="nav__link" >Quest Hub</a>
-    </nav>
-  <div class="about">
-    <form v-on:submit.prevent="submitTask">
-          <select v-model="questType" id="questTimeChoice">
+  <div class="createTask">
+    <form v-on:submit.prevent>
+          <select v-model="taskType" id="questTimeChoice">
             <option disabled value="">Select Quest Type</option>
             <option v-for="option in questOptions" :value="option">{{ option }}</option>
           </select>
-      <input type="text" placeholder="task">
-      <select v-if="questType === 'weekly'" id="selectWeekly" >
+      <input v-model="taskName" type="text" placeholder="task">
+      <select v-model="taskDate" v-if="questType === 'weekly'" id="selectWeekly" >
         <option disabled value="">Select Day</option>
         <option v-for="day in weekdays" :value="day">{{ day }}</option>
       </select>
-      <input  v-else type="date" placeholder="today">
-      <button>Commit</button>
+      <input v-model="taskDate" v-else type="date" placeholder="today">
+      <button @click="submitTask">Commit</button>
     </form>
+  </div>
+  <div class="listTask">
+    <div >
+
+    </div>
   </div>
 </template>
 <script>
@@ -25,6 +26,10 @@
 export default {
   data() {
     return {
+      taskName: '',
+      taskType: '',
+      taskDate: '',
+      tasks: [],
       questType: '',
       questOptions: ['once', 'weekly', 'monthly'],
       selectedWeekday: '',
@@ -33,7 +38,16 @@ export default {
   },
   methods: {
     submitTask() {
-      alert("alright, let's do it!")
+      alert("alright, let's do it!"),
+      this.tasks.push({
+        name: this.taskName,
+        type: this.taskType,
+        date: this.taskDate
+      })
+      this.taskName = '',
+      this.taskType = '',
+      this.taskDate = ''
+      
     }
   }
 }

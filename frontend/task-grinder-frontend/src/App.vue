@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Hero in Kitchen" class="logo" src="@/assets/dishes.jpg" />
+    <img alt="Hero in Kitchen" class="logo" src="@/assets/dishes.jpg" height="200px" />
     <div class="wrapper">
       <HelloWorld msg="Task Grinder Project" />
       <nav>
