@@ -6,7 +6,7 @@
             <option v-for="option in questOptions" :value="option">{{ option }}</option>
           </select>
       <input v-model="taskName" type="text" placeholder="task">
-      <select v-model="taskDate" v-if="questType === 'weekly'" id="selectWeekly" >
+      <select v-model="taskDate" v-if="taskType === 'weekly'" id="selectWeekly" >
         <option disabled value="">Select Day</option>
         <option v-for="day in weekdays" :value="day">{{ day }}</option>
       </select>
@@ -15,8 +15,17 @@
     </form>
   </div>
   <div class="listTask">
-    <div >
-
+    <div v-for="(task, index) in tasks" :key="index" class="task-item" >
+      <div class="task-icon" >
+          {{ task.type }}
+      </div>
+      <div class="task-info" >
+          <p> {{ task.name }} </p>
+          <p> {{ task.date }} </p>
+      </div>
+      <div>
+        <button @click="deleteTask"> Done </button>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +56,9 @@ export default {
       this.taskName = '',
       this.taskType = '',
       this.taskDate = ''
-      
+    },
+    deleteTask(index) {
+      this.tasks.splice(index, 1)
     }
   }
 }
