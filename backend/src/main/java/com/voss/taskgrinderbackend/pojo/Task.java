@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.*;
 
 
@@ -28,12 +31,13 @@ public class Task {
     @Column(name = "quest_name", nullable = false)
     private String name;
     @Column(name = "date", nullable = false)
+    @DateTimeFormat
     private Date date;
     @Column(name = "questType", nullable = false)
     private String value;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "userID", name = "profile_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(referencedColumnName = "user_id", name = "user_id")
     private Profile profile;
 
 }

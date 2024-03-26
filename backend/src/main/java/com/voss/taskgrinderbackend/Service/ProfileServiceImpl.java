@@ -2,12 +2,10 @@ package com.voss.taskgrinderbackend.Service;
 
 import com.voss.taskgrinderbackend.pojo.Profile;
 import com.voss.taskgrinderbackend.repository.ProfileRepository;
-import com.voss.taskgrinderbackend.repository.ProfilesInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Component
 public class ProfileServiceImpl implements ProfileService{

@@ -22,19 +22,19 @@ public class TaskController {
 
     @Autowired private TaskService taskService;
 
-    @GetMapping("/task/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable Long id){
-        return new ResponseEntity<>(taskService.getTask(id), HttpStatus.OK);
+    @GetMapping("/{userID}/task/{id}")
+    public ResponseEntity<Task> getTask(@PathVariable Long userID){
+        return new ResponseEntity<>(taskService.getTask(userID), HttpStatus.OK);
     }
 
-    @GetMapping("/task/all")
-    public ResponseEntity<List<Task>> getTasks(){
-        return new ResponseEntity<>(taskService.getTasks(), HttpStatus.OK);
+    @GetMapping("/{userID}/task")
+    public ResponseEntity<List<Task>> getTasks(@PathVariable Long userID){
+        return new ResponseEntity<>(taskService.getTasks(userID), HttpStatus.OK);
     }
 
-    @PostMapping("/task")
-    public ResponseEntity<Task> createTask(@RequestBody Task task){
-        return new ResponseEntity<>(taskService.saveTask(task), HttpStatus.CREATED);
+    @PostMapping("/{userID}/task")
+    public ResponseEntity<Task> createTask(@RequestBody Task task, @PathVariable Long userID){
+        return new ResponseEntity<>(taskService.saveTask(task, userID), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/task/{id}")

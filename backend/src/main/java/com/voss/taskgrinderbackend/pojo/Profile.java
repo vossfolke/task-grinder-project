@@ -23,7 +23,7 @@ public class Profile {
     private String username;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userID")
+    @Column(name = "user_id")
     private Long userId;
 
 }
