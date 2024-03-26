@@ -23,6 +23,7 @@ public class Profile {
     private String username;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userID")
     private String userId;
 
 }
