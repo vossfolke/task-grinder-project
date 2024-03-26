@@ -21,8 +21,8 @@ public class TaskGrinderBackendApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Profile[] profiles = new Profile[]{
-			new Profile("test1", 1L),
-			new Profile("test2", 2L)
+			new Profile("test1"),
+			new Profile("test2")
 		};
 		for (int i=0; i< profiles.length; i++){
 			profileRepository.save(profiles[i]);

@@ -22,7 +22,7 @@ public class TaskController {
 
     @Autowired private TaskService taskService;
 
-    @GetMapping("/{userID}/task/{id}")
+    @GetMapping("/{userID}/task/id")
     public ResponseEntity<Task> getTask(@PathVariable Long userID){
         return new ResponseEntity<>(taskService.getTask(userID), HttpStatus.OK);
     }

@@ -17,11 +17,11 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public ResponseEntity<Profile> getProfile(@PathVariable Long id) {
-        return new ResponseEntity<>(profileService.getProfileById(id), HttpStatus.OK);
+        return new ResponseEntity<>(profileService.getProfileByUserId(id), HttpStatus.OK);
     }
 
     @GetMapping("/profile/all")
-    public ResponseEntity<List<Profile>> getTasks(){
+    public ResponseEntity<List<Profile>> getProfiles(){
         return new ResponseEntity<>(profileService.getProfiles(), HttpStatus.OK);
     }
 

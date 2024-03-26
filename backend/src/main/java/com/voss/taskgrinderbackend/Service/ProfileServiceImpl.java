@@ -19,7 +19,7 @@ public class ProfileServiceImpl implements ProfileService{
     }
 
     @Override
-    public Profile getProfileById(Long id) {
+    public Profile getProfileByUserId(Long id) {
         return profileRepository.findById(id).get();
     }
 
