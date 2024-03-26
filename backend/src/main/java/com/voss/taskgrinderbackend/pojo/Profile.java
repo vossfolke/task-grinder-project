@@ -24,6 +24,6 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userID")
-    private String userId;
+    private Long userId;
 
 }
