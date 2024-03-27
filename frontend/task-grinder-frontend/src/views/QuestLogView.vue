@@ -11,7 +11,7 @@
         <option v-for="day in weekdays" :value="day">{{ day }}</option>
       </select>
       <input v-model="taskDate" v-else type="date" placeholder="today">
-      <button @click="submitTask">Commit</button>
+      <button @click="submitTask" class="button">Commit</button>
     </form>
   </div>
   <div class="task-list">
@@ -24,7 +24,7 @@
           <p> {{ task.date }} </p>
       </div>
       <div class="task-complete" v-bind="index">
-        <button @click.stop="deleteTask(index)"> Done </button>
+        <button @click.stop="deleteTask(index)" class="button"> Done </button>
       </div>
     </div>
   </div>
@@ -68,10 +68,10 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    background-color: rgba(51, 36, 36, 0.74);
+    margin-bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.479);
     color: aliceblue;
+    border-color: aliceblue;
   }
   .task-info {
     flex-grow: 1;
@@ -87,6 +87,21 @@ export default {
   }
   .task-complete {
     flex-grow: 1;
+  }
+
+  .createTask {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.493);
+    margin-bottom: 5px;
+  }
+
+  .button {
+    background-color:  rgb(58, 124, 102);
+    color: white;
+    border: none;
+    position: relative;
+    min-height: 40px;
+    min-width: 60px;
   }
 
 </style>

@@ -1,16 +1,25 @@
 @import './base.css';
 
 #app {
+  min-width: 100%;
+  min-height: 100vh;
+  display: block;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7), 
+    rgba(0, 0, 0, 0.7)
+  ),
+  url("dishes.jpg");
+  background-position: center;
 }
 
 a,
 .green {
   text-decoration: none;
-  color: rgb(13, 94, 67);
+  color: rgb(157, 201, 186);
   transition: 0.4s;
   padding: 3px;
 }
@@ -28,7 +37,7 @@ a,
   }
 
   #app {
-    display: grid;
+    display: block;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
