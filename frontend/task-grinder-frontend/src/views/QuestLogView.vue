@@ -27,6 +27,10 @@
       </div>
     </div>
   </div>
+  <div v-if="showMessageBox" class="message-box">
+      <span class="message-text">{{ message }}</span>
+      <div class="progress-bar"></div>
+    </div>
 </template>
 <script>
 
@@ -42,11 +46,13 @@ export default {
       questOptions: ['once', 'weekly', 'monthly'],
       selectedWeekday: '',
       weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      showMessageBox: false,
+      message: ''
     }
   },
   methods: {
     submitTask() {
-      alert("alright, let's do it!"),
+      this.showMessage(),
       this.tasks.push({
         name: this.taskName,
         type: this.taskType,
@@ -56,6 +62,14 @@ export default {
       this.taskType = '',
       this.taskDate = ''
     },
+    showMessage() {
+      // Set your message here
+      this.message = 'alright, lets do it!';
+      this.showMessageBox = true;
+      setTimeout(() => {
+        this.showMessageBox = false;
+      }, 3000);// Hide the message box after 2 seconds
+     }, 
     deleteTask(index) {
       this.tasks.splice(index, 1)
     }
@@ -159,4 +173,42 @@ export default {
   .button:hover {
     background-color: rgb(44, 96, 79); /* Darker green on hover */
   }
+  .message-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: rgb(44, 96, 79); /* Adjust as needed */
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ccc; /* Optional: Add a border at the top of the message box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-text {
+  color: white; /* Adjust to match the style of other CSS elements */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'Arial Narrow', Arial, sans-serif; /* Use a sans-serif font */
+  font-size: 20px;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #dcdcdc5e; /* Adjust as needed */
+  animation: shrink 3s linear forwards; /* Animation to shrink the progress bar */
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
 </style>
