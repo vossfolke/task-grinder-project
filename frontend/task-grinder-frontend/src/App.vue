@@ -6,14 +6,14 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <div class="wrapper">
       <HelloWorld msg="Task Grinder Project" />
-      <nav>
+      <nav class="green">
         <RouterLink to="/">Profile</RouterLink>
         <RouterLink to="/questlog">Quest Log</RouterLink>
       </nav>
     </div>
   </header>
-  <RouterView />
 </template>
 
 <style scoped>
+@import './assets/main.css'
 </style>
