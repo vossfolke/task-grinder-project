@@ -26,7 +26,9 @@ export default {
       user: {
         username: 'Folke',
         email: 'folke@example.com',
-        avatar: '@/assets/folke_avatar.png'
+        password: '',
+        id: '',
+        avatar: '/src/assets/folke_avatar.png'
         // Add other user details as needed
       },
       completedTasks: 10 // Example number of completed tasks
