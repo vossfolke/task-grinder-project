@@ -6,5 +6,5 @@ Completing tasks will give you a game-like experience by earning xp and collecti
 This may help you to develop a daily routine with you tasks.
 
 
-##Contributing
+## Contributing
 At this stage of the project, you can't contribute.
